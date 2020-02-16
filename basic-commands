@@ -1,0 +1,9 @@
+Get all
+
+kubectl get all,ing
+
+kubectl logs
+
+kubectl apply -f <filename>
+
+kubectl delete -f <filename>
