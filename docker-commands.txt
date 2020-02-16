@@ -1,0 +1,6 @@
+docker build --tag frontend:0.1 .
+
+docker build --tag <imagename>:<version> .
+
+docker push <imagename>:<version> registryname.azurecr.io/<imagename>:<version>
+

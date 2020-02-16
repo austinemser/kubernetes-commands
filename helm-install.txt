@@ -20,3 +20,6 @@ install a repo
 
 helm install redis-release stable/redis
 
+List helm release
+
+helm list
