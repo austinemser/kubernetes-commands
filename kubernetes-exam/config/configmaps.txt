@@ -1,0 +1,25 @@
+kubectl get configmaps
+
+ENV:
+
+envFrom:
+  - configMapRef:
+        name: app-config
+
+
+SINGLE ENV
+
+env:
+  - name: APP_COLOR
+    valueFrom:
+      configMapKeyRef:
+        name: app-config
+        key: APP_COLOR
+
+
+VOLUME
+
+volumes:
+- name: app-config-volume
+  configMap:
+    name: app-config
