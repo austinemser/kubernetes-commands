@@ -1,0 +1,36 @@
+By default pods are set to restartPolicy: Always
+
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: random-error-Job
+spec:
+  completions: 3
+  parallelism: 3
+  template:
+    spec:
+      containers:
+        - name: random-error
+          image: kodekloud/random-error
+      restartPolicy: Never
+
+
+CRON Job
+
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata: 
+  name: reporting-cron-Job
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+        completions: 3
+        parallelism: 3
+        template:
+            spec:
+            containers:
+                - name: random-error
+                image: kodekloud/random-error
+            restartPolicy: Never

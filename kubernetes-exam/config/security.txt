@@ -1,0 +1,4 @@
+Security can be configed at the pod level and the container level
+
+Pod level security applies to all containers in the pod
+Container level security will override the pod

@@ -1,0 +1,55 @@
+Pod Status
+
+1) Pending
+happens before the pod is scheduled
+
+2) ContainerCreating
+happens after the pod is scheduled, before the contaienrs start
+
+3) Running
+After all the pods start
+
+POD Conditions
+
+PodScheduled
+Initialized
+ContainersReady
+Ready
+
+readinessProbe:
+  httpGet:
+    path: /api/Ready
+    port: 8080
+  initialDelaySeconds: 10
+  periodSecond: 5
+
+readinessProbe:
+  tcpSocket:
+    port: 3306
+
+readinessProbe:
+  exec:
+    command:
+      - cat
+      - /app/is_ready
+
+livenessProbe:
+  httpGet:
+    path: /api/healthy
+    port: 8080
+  initialDelaySeconds: 10
+  periodSeconds: 5
+  failureThreshold: 8
+
+LOGS
+
+kubectl logs -f event-simulator-pod event-simulator
+
+MONITORING
+
+Runs on kubelet
+
+cAdviser receives performance metrics on pods.
+
+kubectl top node
+kubectl top pod

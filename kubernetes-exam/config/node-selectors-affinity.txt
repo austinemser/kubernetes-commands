@@ -1,0 +1,22 @@
+Selectors
+
+nodeSelector:
+  size: Large
+  
+kubectl label nodes node-name label-key=label=value
+
+kubectl label nodes node01 size=Large
+
+Affinity
+
+nodeAffinity:
+  requiredDuringSchedulingIgnoredDuringExection:
+    nodeSelectorTerms:
+    - matchExpressions:
+      - key:
+        operator: in
+        values:
+        - Large
+        - Medium
+
+kubectl get pods -o wide

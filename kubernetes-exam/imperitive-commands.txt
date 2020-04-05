@@ -10,6 +10,12 @@ Before we begin, familiarize with the two options that can come in handy while w
 
 Use the above two in combination to generate a resource definition file quickly, that you can then modify and create resources as required, instead of creating the files from scratch.
 
+OUTPUT YAML OF EXISTING POD
+kubectl get pod ubuntu-sleeper -o yaml
+
+
+LOGS
+kubectl logs <pod_name>
 
 
 POD

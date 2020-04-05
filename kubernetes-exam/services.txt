@@ -1,0 +1,84 @@
+NodePort
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: myapp-service
+
+spec:
+    type: NodePort
+    ports:
+    -   targetPort: 80
+        port: 80
+        nodePort: 30008
+    selector:
+        app: myapp
+        type: front-end
+
+
+Port is only one that is required, if there is no targetport is is assumed to be the same as port.
+And if nodeport is empty it is picked from a ranged of 30,000-32,267
+
+Performs load balancing to distribute across different pods.
+
+Services span across nodes.
+
+
+
+Cluster IP
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: back-end
+spec:
+    type: ClusterIP
+    ports:
+    -   targetPort: 80
+        port: 80
+    selector:
+        app: myapp
+        type: back-end
+
+NETWORK POLICY
+
+
+
+
+policyTypes:
+- Ingress
+ingress:
+- from:
+  - podSelector:
+      matchLabels:
+        name: api-pods
+  ports:
+  - protocol: TCP
+    port: 3306
+
+
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: db-policy
+spec:
+  podSelector:
+    matchLabels:
+      role: db
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          name: api-pod
+    ports:
+    - protocol: TCP
+      port: 3306
+      
+
+
+
+
+
+

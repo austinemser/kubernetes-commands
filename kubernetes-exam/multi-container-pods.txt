@@ -1,0 +1,8 @@
+3 Types
+
+Ambassador
+Adapter
+Sidecar
+
+Pods that need to scale together, share the same network space, and storage
+

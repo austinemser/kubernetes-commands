@@ -1,0 +1,29 @@
+Taints and tolerations describe rules for what pods can be scheduled on which nodes.
+
+Taints exist on nodes.
+
+Add toleration to a specific pod to allow certain Taints
+
+Taints - NODES
+
+kubectl taint nodes node-name key=value:taint-effect
+
+Taint Effects:
+- NoSchedule: no new pods can be scheduled on this node
+- PreferNoSchedule: system will try to avoid placing pod on node
+- NoExecute: new pods will not scheduled and existing pods will be evicted without toleration
+
+kubectl taint nodes node1 app=blue:NoSchedule
+
+
+Toleration - PODS
+
+tolerations:
+- key: "app"
+  operator: "Equal"
+  value: "blue"
+  effect: "NoSchedule" 
+
+Taints and tolerations does not gaurentee pods will be scheduled on a certain node. It will just enforce that node does not take pods without a certain toleration.
+
+Node Affinity is what gaurentees pods go to a specific node.

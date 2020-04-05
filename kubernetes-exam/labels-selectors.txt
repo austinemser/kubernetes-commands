@@ -1,0 +1,8 @@
+Selectors
+
+kubectl get pods --selector app=App1
+
+Annotations:
+
+Used for integration purposes.
+
