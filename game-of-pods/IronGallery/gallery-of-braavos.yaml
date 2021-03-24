@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: iron-gallery-ingress
+spec:
+  rules:
+  - host: iron-gallery-braavos.com
+    http:
+      paths:
+      - backend: 
+          serviceName: iron-gallery-service
+          servicePort: 30099
+        path: /
+      - backend:
+          serviceName: ingress-space
+          servicePort: 80
+        path: /
